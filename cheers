@@ -2,11 +2,21 @@
 
 require_relative 'lib/cheer'
 
+def ask_for_name_again
+  puts "I'm sorry, what was your name again?"
+  gets
+end
+
+
 puts "Hello, what's your name?"
-name = gets
+name = gets.chomp
+
+while name.empty?
+  name = ask_for_name_again
+end
+
 puts Cheer.for_person(name)
 
-# This is commented as example only - don't commit!
-#puts "Hey #{name}, what's your birthday? (mm/dd)"
-#birthday_string = gets
-#puts Cheer.for_birthday(birthday_string)
+puts "Hey #{name.chomp}, what's your birthday? (mm/dd)"
+birthday_string = gets
+puts Cheer.for_birthday(birthday_string)
