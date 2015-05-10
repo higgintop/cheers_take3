@@ -3,10 +3,26 @@
 require_relative 'lib/cheer'
 
 puts "Hello, what's your name?"
-name = gets
-puts Cheer.for_person(name)
+name = gets.chomp
 
-# This is commented as example only - don't commit!
-#puts "Hey #{name}, what's your birthday? (mm/dd)"
-#birthday_string = gets
-#puts Cheer.for_birthday(birthday_string)
+begin
+ puts Cheer.for_person(name)
+rescue
+    puts "I'm sorry, what was your name again?"
+    name = gets.chomp
+    retry
+end
+
+
+puts "Hey #{name}, what's your birthday? (mm/dd)"
+birthday_string = gets.chomp
+
+
+begin
+  puts Cheer.for_birthday(birthday_string)
+rescue
+  puts "I couldn't understand that. Could you give that to me in mm/dd format?\n"
+  birthday_string = gets.chomp
+  retry
+end
+
